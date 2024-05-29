@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link rel="stylesheet" href="/CSS/style1.css">
+
+</head>
+<body>
+<table>
+<thead>
+<th>Title</th>
+<th>Description</th>
+<th>Due Date</th>
+<th>Status</th>
+</thead>
+<tbody>
+<tr th:each="task: ${task}">
+<td th:text="${task.title}">Title</td>
+<td th:text="${task.description}">Description</td>
+<td th:text="${task.dueDate}">Due Date</td>
+<td th:text="${task.status}">Status</td>
+<td>
+<form th:action="@{/task/edit}" method="get">
+<input type="hidden" name="id" th:value="${task.id}">
+<button type="Submit">Edit</button>
+</form>
+
+<form th:action="@{/task/delete}" method="post">
+<input type="hidden" name="id" th:value="${task.id}">
+<button type="Submit">Delete</button>
+</form>
+</td>
+</tr>
+</tbody>
+</table>
+
+</body>
+</html>
